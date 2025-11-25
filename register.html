@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Akun</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, rgba(0, 99, 169, 0.85), rgba(0, 16, 32, 0.92)),
+                        url("img/bg 3d 2.avif") no-repeat center center / cover;
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            padding-bottom: 70px;
+            animation: fadeIn 1s forwards ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            animation: zoom 0.6s ease;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(3px);
+        }
+
+        @keyframes zoom {
+            from { transform: scale(0.93); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        button {
+            transition: 0.25s;
+        }
+        button:hover { transform: scale(1.07); }
+        button:active { transform: scale(0.92); }
+
+        footer {
+            background: rgba(0, 0, 0, 0.78);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white text-center">
+            <h3 class="m-0">Form Register</h3>
+        </div>
+        <div class="card-body">
+
+            <input type="text" id="nama" class="form-control mb-3" placeholder="Masukkan Nama Lengkap">
+            <input type="text" id="regusername" class="form-control mb-3" placeholder="Masukkan Username">
+            <input type="password" id="regpassword" class="form-control mb-3" placeholder="Masukkan Password">
+
+            <button class="btn btn-success w-100" onclick="register()">Daftar</button>
+
+            <p class="text-center mt-3 text-white">
+                Sudah punya akun? <a href="login.html" class="fw-bold">Login di sini</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        ©Copyright by 231011402775_FAJAR<br>
+        TEKNIK INFORMATIKA – 4D
+    </footer>
+
+    <script>
+        function register() {
+            let nama = document.getElementById("nama").value;
+            let username = document.getElementById("regusername").value;
+            let password = document.getElementById("regpassword").value;
+
+            if (!nama || !username || !password) {
+                alert("Semua kolom harus diisi!");
+                return;
+            }
+
+            if (localStorage.getItem("username") === username) {
+                alert("Username sudah digunakan!");
+                return;
+            }
+
+            localStorage.setItem("nama", nama);
+            localStorage.setItem("username", username);
+            localStorage.setItem("password", password);
+
+            alert("Registrasi berhasil! Silakan login.");
+            window.location.href = "login.html";
+        }
+    </script>
+
+</body>
+</html>

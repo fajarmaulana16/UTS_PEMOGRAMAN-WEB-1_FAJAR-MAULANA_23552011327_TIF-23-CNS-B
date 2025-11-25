@@ -1,0 +1,11 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "Project dengan API collection",
+  "apiCollection": {
+    "version": "1",
+    "name": "API Collection",
+    "type": "collection"
+  },
+  "dependencies": {}
+}

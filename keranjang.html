@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Keranjang</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    body {
+      background: url("img/bg.jpg") no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .navbar-custom {
+      backdrop-filter: blur(4px);
+      background: rgba(0,0,0,0.45);
+      color: white;
+      padding: 12px 18px;
+      font-size: 19px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    button { transition: 0.25s; }
+    button:hover { transform: scale(1.07); }
+    button:active { transform: scale(0.92); }
+
+    /* footer */
+    footer {
+      background: rgba(0,0,0,0.55);
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-size: 15px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar-custom">
+    <div><b>Keranjang Belanja</b></div>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button class="btn btn-sm btn-light" onclick="location.href='katalog.html'">Kembali Belanja</button>
+      <button class="btn btn-sm btn-warning" onclick="clearCart()">Hapus Semua</button>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <table class="table table-bordered text-center shadow">
+      <thead class="table-dark">
+        <tr><th>Produk</th><th>Harga</th><th>Aksi</th></tr>
+      </thead>
+      <tbody id="cart-body"></tbody>
+    </table>
+
+    <div class="d-flex justify-content-between mt-3">
+      <h4>Total: <span id="totalPrice" class="text-success">Rp 0</span></h4>
+      <button class="btn btn-success" onclick="checkout()">Checkout</button>
+    </div>
+  </div>
+
+  <!-- 🔥 FOOTER -->
+  <footer>
+    @Copyright by 221011400647_Fajar Ramadhansyah<br>
+    MAHASISWA_TI 22 A1
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

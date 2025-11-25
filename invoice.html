@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1.0">
+    <title>Invoice Pembelian</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: url("img/bg.jpg") no-repeat center center / cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card {
+            animation: fade 0.6s ease-out;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        button {
+            transition: 0.25s;
+        }
+        button:hover {
+            transform: scale(1.07);
+        }
+        button:active {
+            transform: scale(0.92);
+        }
+
+        /* footer */
+        footer {
+            background: rgba(0,0,0,0.55);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 15px;
+            margin-top: 35px;
+        }
+
+        /* Supaya background tidak ikut ke PDF saat print */
+        @media print {
+            body {
+                background: white !important;
+            }
+            footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5" style="max-width: 700px;">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white text-center">
+                <h3>Invoice Pembelian</h3>
+            </div>
+
+            <div class="card-body">
+                <p><strong>Nama Pelanggan:</strong> <span id="namaPelanggan"></span></p>
+                <p><strong>Nomor Transaksi:</strong> <span id="noTransaksi"></span></p>
+                <p><strong>Tanggal:</strong> <span id="tanggal"></span></p>
+
+                <table class="table table-bordered text-center mt-4">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Produk</th>
+                            <th>Harga</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invoiceItems"></tbody>
+                </table>
+
+                <h4 class="text-end mt-3">
+                    Total: <span class="text-success" id="totalHarga">Rp 0</span>
+                </h4>
+            </div>
+
+            <div class="card-footer text-center">
+                <button class="btn btn-primary me-2" onclick="window.print()">Simpan / Print PDF</button>
+                <button class="btn btn-warning" onclick="kembali()">Kembali ke Katalog</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔥 FOOTER -->
+    <footer>
+        @Copyright by 221011400647_Fajar Ramadhansyah<br>
+        MAHASISWA_TI 22 A1
+    </footer>
+
+    <script>
+        let nama = localStorage.getItem("nama");
+        let cart = JSON.parse(localStorage.getItem("lastOrder")) || [];
+        document.getElementById("namaPelanggan").innerText = nama;
+
+        // Format tanggal
+        const today = new Date();
+        document.getElementById("tanggal").innerText = today.toLocaleDateString("id-ID");
+
+        // Generate nomor transaksi random
+        const no = "INV" + Math.floor(Math.random() * 90000 + 10000);
+        document.getElementById("noTransaksi").innerText = no;
+
+        // Tampilkan item invoice
+        let rows = "";
+        let total = 0;
+        cart.forEach(item => {
+            rows += `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>Rp ${item.price.toLocaleString()}</td>
+                </tr>
+            `;
+            total += item.price;
+        });
+        document.getElementById("invoiceItems").innerHTML = rows;
+        document.getElementById("totalHarga").innerText = "Rp " + total.toLocaleString();
+
+        function kembali() {
+            window.location.href = "katalog.html";
+        }
+    </script>
+
+</body>
+</html>

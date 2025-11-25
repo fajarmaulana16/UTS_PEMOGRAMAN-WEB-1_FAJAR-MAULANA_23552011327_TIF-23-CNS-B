@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, rgba(0, 99, 169, 0.85), rgba(0, 16, 32, 0.92)),
+                        url("img/bg 3d 2.avif") no-repeat center center / cover;
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.9s forwards ease-out;
+            padding-bottom: 70px; /* ruang agar konten tidak tertutup footer */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            animation: zoom 0.6s ease;
+        }
+        @keyframes zoom {
+            from { transform: scale(0.93); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        button, a.btn {
+            transition: 0.25s;
+        }
+        button:hover, a.btn:hover { transform: scale(1.07); }
+        button:active, a.btn:active { transform: scale(0.92); }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.78);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🟦 NAVBAR -->
+    <nav class="navbar navbar-dark bg-primary px-3">
+        <span class="navbar-brand" id="welcome"></span>
+        <button class="btn btn-warning" onclick="logout()">Logout</button>
+    </nav>
+
+    <!-- 🟩 KONTEN -->
+    <div class="container text-center mt-5 text-white">
+        <h2>SELAMAT DATANG DI FAJAR STORE, BARANG DIJAMIN 100% ORIGINAL DAN TERPERCAYA</h2>
+        <p>Soal harga tidak perlu diragukan lagi — sudah pasti murah meriah. Ayo belanja sekarang! 💥</p>
+        <a href="katalog.html" class="btn btn-success mt-3">MASUK KE HALAMAN PRODUK</a>
+    </div>
+
+    <!-- 🟥 FOOTER -->
+    <footer>
+        @Copyright by 231011402775_FAJAR<br>
+        TEKNIK INFORMATIKA - 4D
+    </footer>
+
+    <!-- 🔥 SCRIPT -->
+    <script>
+        let nama = localStorage.getItem("nama");
+        document.getElementById("welcome").innerHTML = "Halo, " + nama;
+
+        function logout() {
+            localStorage.clear();
+            alert("Logout berhasil!");
+            window.location.href = "login.html";
+        }
+    </script>
+
+</body>
+</html>
